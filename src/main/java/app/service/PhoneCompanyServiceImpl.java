@@ -1,7 +1,6 @@
 package app.service;
 
 import app.model.PhoneCompany;
-import app.model.User;
 import app.repository.PhoneCompanyRepository;
 import com.google.gson.Gson;
 import java.io.IOException;
