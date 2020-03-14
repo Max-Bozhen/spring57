@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Welcome</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<h2 th:utext="${message}">..!..</h2>
+<a th:href="@{/usersList}">Get PDF</a>
+<a th:href="@{/upload}">Upload file</a>
+<a th:href="@{/users}">Show all users</a>
+<a th:href="@{/companies}">Show all companies</a>
+</body>
+
+</html>

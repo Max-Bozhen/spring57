@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Users List</title>
+</head>
+<body>
+<h1>Phone companies</h1>
+<br/><br/>
+<div>
+  <table border="1">
+    <tr>
+      <th>Company name</th>
+      <th>phoneCodes</th>
+    </tr>
+    <tr th:each ="phoneCompany : ${companies}">
+      <td th:utext="${phoneCompany.companyName}">...</td>
+      <td th:utext="${phoneCompany.phoneCode}">...</td>
+    </tr>
+  </table>
+
+  <a th:href="@{/}">Main page</a>
+</div>
+</body>
+</html>
