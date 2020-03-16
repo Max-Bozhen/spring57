@@ -19,7 +19,12 @@
     </tr>
   </table>
 
-  <a th:href="@{/}">Main page</a>
+  <a th:href="@{/main}">Main page</a>
+</div>
+<div>
+  <form action="/logout" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
 </div>
 </body>
 </html>

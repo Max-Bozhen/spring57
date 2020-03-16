@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService {
       throw new RuntimeException(e);
     }
     userRepository.saveAll(users);
-  }
+}
 
   @Override
   public User findByFullName(String fullName) {
@@ -66,6 +66,11 @@ public class UserServiceImpl implements IUserService {
   @Override
   public List<User> saveAll(List<User> users) {
     return userRepository.saveAll(users);
+  }
+
+  @Override
+  public User findByUserName(String userName) {
+    return userRepository.findByUserName(userName);
   }
 
 }

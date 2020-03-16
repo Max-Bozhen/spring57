@@ -16,4 +16,6 @@ public interface IUserService {
   User save(User user);
 
   List<User> saveAll(List<User> users);
+
+  User findByUserName(String userName);
 }
