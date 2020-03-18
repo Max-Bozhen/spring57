@@ -7,8 +7,10 @@ import app.service.IUserService;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,8 +32,16 @@ public class UserController {
   }
 
   @GetMapping("/users")
+  @PreAuthorize("hasAuthority('ADMIN')")
   public String showUsers(Map<String, Object> model) {
     model.put("users", userService.findAll());
+    return "users";
+  }
+
+  @PostMapping("editProfiles")
+  public String edit(Map<String, Object> model) {
+    List<User> all = userService.findAll();
+    model.put("users", all);
     return "users";
   }
 }

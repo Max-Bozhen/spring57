@@ -1,10 +1,14 @@
 [
   {
     "fullName": "Ivan Johnson William",
-    "phoneNumber": ["8965444333", "895034253456","8990376346"]
+    "username": "Vano",
+    "phoneNumber": ["8965444333", "895034253456","8990376346"],
+    "roles": ["USER"]
   },
   {
     "fullName": "Vanek From Selo",
-    "phoneNumber": ["8955444355", "89908956112"]
+    "username": "Selo",
+    "phoneNumber": ["8955444355", "89908956112"],
+    "roles": ["USER"]
   }
 ]

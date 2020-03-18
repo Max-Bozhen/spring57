@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,7 @@ public class MultiPartController {
   }
 
   @PostMapping("upload")
-  public String uploadFile(MultipartFile file, Map<String,Object> model) {
+  public String uploadFile(MultipartFile file, Model model) {
     List<User> users;
     try (final Reader reader = new InputStreamReader(file.getInputStream())) {
       users = Arrays.asList(gson.fromJson(reader, User[].class));
@@ -36,7 +37,7 @@ public class MultiPartController {
       throw new RuntimeException(e);
     }
     userService.saveAll(users);
-    model.put("message", "Upload file successfully");
+    model.addAttribute("message", "Upload file successfully");
     return "uploadStatus";
   }
 }

@@ -2,16 +2,17 @@
   {
     "fullName": "John Johnson William",
     "phoneNumber": ["8911444333", "890434253456","8990376346"],
-    "userName": "Johnny",
-    "password": "password",
+    "username": "Johnny",
+    "password": "412441",
     "roles": ["USER","ADMIN"],
     "active": true
   },
   {
     "fullName": "Will Smith Ruby",
     "phoneNumber": ["8955444355", "89908956112"],
-    "userName": "Legend",
+    "username": "Legend",
     "roles": ["USER"],
+    "password": "pass",
     "active": true
   }
 ]

@@ -1,6 +1,5 @@
 package app.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CollectionTable;
@@ -15,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -33,18 +31,23 @@ public class User {
   @ElementCollection(targetClass = String.class)
   private List<String> phoneNumber;
   @Column(name = "USERNAME")
-  private String userName;
+  private String username;
   @Column(name = "PASSWORD")
   private String password;
-  @Column(name="ACTIVE")
+  @Column(name = "ACTIVE")
   private boolean active;
 
   @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
   @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
   @Column(name = "ROLES")
+  @Enumerated(EnumType.STRING)
   Set<Role> roles;
 
   public User() {
+  }
+
+  public boolean isAdmin() {
+    return roles.contains(Role.ADMIN);
   }
 
   public String getFullName() {
@@ -63,12 +66,12 @@ public class User {
     this.phoneNumber = phoneNumber;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getPassword() {
