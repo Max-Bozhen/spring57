@@ -1,9 +1,11 @@
 package app.controller;
 
 import app.model.PhoneCompany;
+import app.model.Role;
 import app.model.User;
 import app.service.IPhoneCompanyService;
 import app.service.IUserService;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -35,13 +37,9 @@ public class UserController {
   @PreAuthorize("hasAuthority('ADMIN')")
   public String showUsers(Map<String, Object> model) {
     model.put("users", userService.findAll());
+
     return "users";
   }
 
-  @PostMapping("editProfiles")
-  public String edit(Map<String, Object> model) {
-    List<User> all = userService.findAll();
-    model.put("users", all);
-    return "users";
-  }
+
 }

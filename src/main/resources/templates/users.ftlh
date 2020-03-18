@@ -17,7 +17,7 @@
     <td>${user.username}</td>
     <td><#list user.phoneNumber as phoneNumber>${phoneNumber}<#sep>, </#list></td>
     <td><#list user.roles as roles>${roles}<#sep>, </#list></td>
-     <td><a href="/user/${user.id}">edit</a></td>
+     <td><a href="/editUsers/${user.id}">edit</a></td>
     </tr>
     </#list>
   </table>
