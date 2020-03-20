@@ -27,14 +27,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
-          .antMatchers("/", "/registration", "/h2-console/**").permitAll()
+        .antMatchers("/", "/registration", "/h2-console/**", "/static/**").permitAll()
+
         .and()
-          .formLogin()
-          .loginPage("/login")
-          .permitAll()
+        .formLogin()
+        .loginPage("/login")
+        .permitAll()
+
         .and()
-          .logout()
-          .permitAll();
+        .logout().deleteCookies("JSESSIONID").permitAll()
+
+        .and()
+        .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(3600);
     http.csrf().disable();
     http.headers().frameOptions().disable();
 

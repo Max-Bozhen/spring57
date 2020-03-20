@@ -3,6 +3,12 @@
 
 <@c.page>
 Login page
-<@l.login "/login" />
+
+<tr>
+  <@l.login "/login" />
+  <td>Remember Me:</td>
+  <td><input type="checkbox" name="remember-me" /></td>
+</tr>
+<br>
 <a href="/registration">Register new user</a>
 </@c.page>

@@ -34,13 +34,14 @@ public class AdminPanelController {
 
   @PostMapping("editUsers")
   public String edit(@RequestParam String username,
-      @RequestParam Map<String, String> phones,
-      @RequestParam Map<String, String> rolesForm,
+      @RequestParam Map<String, String> form,
       @RequestParam("userId") User user) {
     user.setUsername(username);
     user.getPhoneNumber().clear();
-    for(String key : phones.keySet()){
-      user.getPhoneNumber().add(phones.get(key));
+    for (String key : form.keySet()) {
+      if (key.contains("phoneNumber")) {
+        user.getPhoneNumber().add(form.get(key));
+      }
     }
     Set<String> roles = Arrays.stream(Role.values())
         .map(Role::name)
@@ -48,7 +49,7 @@ public class AdminPanelController {
 
     user.getRoles().clear();
 
-    for (String key : rolesForm.keySet()) {
+    for (String key : form.keySet()) {
       if (roles.contains(key)) {
         user.getRoles().add(Role.valueOf(key));
       }
