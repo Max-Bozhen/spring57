@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +21,7 @@ public class UserServiceImpl implements IUserService {
 
   private final UserRepository userRepository;
   private final Gson gson;
-
+  private final PasswordEncoder encoder;
   private List<User> users;
   @Value("${usersURL}")
   private Resource usersList;
@@ -33,6 +34,7 @@ public class UserServiceImpl implements IUserService {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+    users.forEach(user -> user.setPassword(encoder.encode(user.getPassword())));
     userRepository.saveAll(users);
 }
 

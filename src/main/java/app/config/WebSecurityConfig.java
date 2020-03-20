@@ -1,6 +1,7 @@
 package app.config;
 
 import javax.sql.DataSource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,16 +13,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private DataSource dataSource;
+
+  private final DataSource dataSource;
+  private final PasswordEncoder passwordEncoder;
+
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -48,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.jdbcAuthentication()
         .dataSource(dataSource)
-        .passwordEncoder(NoOpPasswordEncoder.getInstance())
+        .passwordEncoder(passwordEncoder)
         .usersByUsernameQuery("select username, password, active from users where username =?")
         .authoritiesByUsernameQuery(
             "select u.username, u.roles from users u inner join user_role u on u.id = u.user_id where u.username=?");
