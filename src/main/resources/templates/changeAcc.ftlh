@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-
+<b>${message?ifExists}</b>
 <div>
   <label>${username}</label>
 

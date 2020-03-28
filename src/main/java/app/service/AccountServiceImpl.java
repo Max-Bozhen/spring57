@@ -1,5 +1,7 @@
 package app.service;
 
+import app.exception.NotEnoughAmountException;
+import app.exception.SameCompanyException;
 import app.model.PhoneCompany;
 import app.model.UserAccount;
 import app.repository.AccountRepository;
@@ -24,20 +26,20 @@ public class AccountServiceImpl implements IAccountService {
     return accountRepository.findByUserId(id);
   }
 
-  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
+  @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = RuntimeException.class)
   @Override
   public UserAccount changeCompany(UserAccount account, String companyName) {
 
     if (account.getPhoneCompany().getCompanyName().equals(companyName)) {
-      throw new RuntimeException("same company");
+      throw new SameCompanyException();
     }
     UserAccount byPhoneNumber = accountRepository.findByPhoneNumber(account.getPhoneNumber());
     if (byPhoneNumber.getAmount() < Double.parseDouble(price)) {
-      throw new RuntimeException("Your operation can't be done. Not enough money");
+      throw new NotEnoughAmountException();
     }
     PhoneCompany byCompanyName = companyService.findByCompanyName(companyName);
     Long accountId = accountRepository
-        .changeCompany(byCompanyName, account.getAmount() - Double.parseDouble(price));
+        .changeCompany(byCompanyName, account.getAmount() - Double.parseDouble(price), account.getId());
     Optional<UserAccount> byId = accountRepository.findById(accountId);
     if(byId.isPresent()){
       return byId.get();

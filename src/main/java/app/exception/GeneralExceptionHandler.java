@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @ControllerAdvice
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
@@ -17,7 +18,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
       IllegalStateException ex, Model model) {
     String bodyOfResponse = "Format or structure of document isn't supported";
     model.addAttribute("message", bodyOfResponse);
-    return "uploadStatus";
+    return "status";
   }
 
   @ExceptionHandler(MultipartException.class)
@@ -25,6 +26,12 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
       MultipartException ex, Model model) {
     String bodyOfResponse = "Too big file...don't do this again";
     model.addAttribute("message", bodyOfResponse);
-    return "uploadStatus";
+    return "status";
+  }
+
+  @ExceptionHandler({NotEnoughAmountException.class, SameCompanyException.class})
+  protected String handleAmountEx( NotEnoughAmountException ex, Model model){
+    model.addAttribute("message", ex.getMessage());
+    return "status";
   }
 }

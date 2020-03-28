@@ -38,6 +38,6 @@ public class MultiPartController {
     }
     userService.saveAll(users);
     model.addAttribute("message", "Upload file successfully");
-    return "uploadStatus";
+    return "status";
   }
 }

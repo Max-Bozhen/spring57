@@ -1,7 +1,10 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/loginTemp.ftlh" as l>
 <@c.page>
-<b>${message}</b>
+<font color="red" size="22">
+  <b>${error?ifExists}</b>
+</font>
+<b>${message?ifExists}</b>
 <div>
   <@l.logout />
 </div>
