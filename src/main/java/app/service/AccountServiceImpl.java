@@ -28,7 +28,7 @@ public class AccountServiceImpl implements IAccountService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = RuntimeException.class)
   @Override
-  public UserAccount changeCompany(UserAccount account, String companyName) {
+  public UserAccount changeMobileOperator(UserAccount account, String companyName) {
 
     if (account.getPhoneCompany().getCompanyName().equals(companyName)) {
       throw new SameCompanyException();
@@ -39,7 +39,7 @@ public class AccountServiceImpl implements IAccountService {
     }
     PhoneCompany byCompanyName = companyService.findByCompanyName(companyName);
     Long accountId = accountRepository
-        .changeCompany(byCompanyName, account.getAmount() - Double.parseDouble(price), account.getId());
+        .changeMobileOperator(byCompanyName, account.getAmount() - Double.parseDouble(price), account.getId());
     Optional<UserAccount> byId = accountRepository.findById(accountId);
     if(byId.isPresent()){
       return byId.get();

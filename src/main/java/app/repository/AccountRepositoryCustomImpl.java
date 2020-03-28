@@ -15,7 +15,7 @@ public class AccountRepositoryCustomImpl implements AccountRepositoryCustom {
 
   @Transactional(propagation = Propagation.REQUIRED)
   @Override
-  public long changeCompany(PhoneCompany changeTo, double amount, Long accountId) {
+  public long changeMobileOperator(PhoneCompany changeTo, double amount, Long accountId) {
     String sql = "UPDATE UserAccount SET phoneCompany.id = :company , amount = :amount WHERE id = :id";
     Query query = entityManager.createQuery(sql);
     query.setParameter("company", changeTo.getId());

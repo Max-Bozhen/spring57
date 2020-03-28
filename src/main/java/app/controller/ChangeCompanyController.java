@@ -5,7 +5,6 @@ import app.service.IAccountService;
 import app.service.IPhoneCompanyService;
 import app.service.IUserService;
 import java.util.List;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class ChangeCompanyController {
   private final IPhoneCompanyService phoneCompanyService;
 
   @GetMapping("{account}")
-  public String changeCompany(@PathVariable UserAccount account, Model model) {
+  public String changeMobileOperator(@PathVariable UserAccount account, Model model) {
     List<String> companyNames = phoneCompanyService.getCompanyNames();
     model.addAttribute("company", account);
     model.addAttribute("companyNames", companyNames);
@@ -34,10 +33,10 @@ public class ChangeCompanyController {
   }
 
   @PostMapping("changeCompany")
-  public String change(@RequestParam String phoneNumber, @RequestParam String userName,
+  public String changeMobileOperator(@RequestParam String phoneNumber, @RequestParam String userName,
        @RequestParam("accountId") UserAccount account, @RequestParam String company, RedirectAttributes model) {
     List<String> companyNames = phoneCompanyService.getCompanyNames();
-    accountService.changeCompany(account, company);
+    accountService.changeMobileOperator(account, company);
     model.addAttribute("account", account.getUser().getId());
     return "redirect:/changeAcc/{account}";
   }

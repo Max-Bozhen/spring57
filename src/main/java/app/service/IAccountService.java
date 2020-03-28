@@ -7,5 +7,5 @@ public interface IAccountService {
 
   List<UserAccount> findByUserId(Long id);
 
-  UserAccount changeCompany(UserAccount account, String companyName);
+  UserAccount changeMobileOperator(UserAccount account, String companyName);
 }
