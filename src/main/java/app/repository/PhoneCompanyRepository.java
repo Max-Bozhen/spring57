@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PhoneCompanyRepository extends JpaRepository<PhoneCompany, Long> {
 
   PhoneCompany findByPhoneCode(String phoneCode);
+
+  PhoneCompany findByCompanyName(String companyName);
 }

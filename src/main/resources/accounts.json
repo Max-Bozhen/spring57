@@ -1,0 +1,10 @@
+insert into account (id, amount, phone_number, phone_company_id, user_id)
+values ('1','150.55','8911444333','3','1');
+insert into account (id, amount, phone_number, phone_company_id, user_id)
+values ('2','210.50','890434253456','1','1');
+insert into account (id, amount, phone_number, phone_company_id, user_id)
+values ('3','555.39','8990376346','4','1');
+insert into account (id, amount, phone_number, phone_company_id, user_id)
+values ('4','35.33','8955444355','1','2');
+insert into account (id, amount, phone_number, phone_company_id, user_id)
+values ('5','00.77','89908956112','4','2');

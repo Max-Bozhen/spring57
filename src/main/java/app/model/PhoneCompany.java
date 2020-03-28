@@ -17,8 +17,8 @@ import lombok.Data;
 @Table(name = "PHONE_COMPANIES")
 public class PhoneCompany {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   @Column(name = "COMPANY_NAME")
   @NotEmpty
   private String companyName;

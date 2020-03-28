@@ -18,6 +18,7 @@
   <br>
 <br>
 <input type="hidden" value="${user.id}" name="userId">
+  <a href="/changeAcc/${user.id}">Show accounts</a>
 <button type="submit">Save</button>
 </form>
 </@c.page>

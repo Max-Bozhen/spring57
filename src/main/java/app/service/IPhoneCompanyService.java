@@ -7,4 +7,6 @@ public interface IPhoneCompanyService {
 
   List<PhoneCompany> findAll();
   String findByPhoneCode(String phoneCode);
+
+  List<String> getCompanyNames();
 }

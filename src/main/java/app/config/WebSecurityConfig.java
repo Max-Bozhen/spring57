@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll()
 
         .and()
-        .logout().deleteCookies("JSESSIONID").permitAll()
+        .logout().logoutSuccessUrl("/login").deleteCookies("JSESSIONID").permitAll()
 
         .and()
         .rememberMe().key("uniqueAndSecret").tokenValiditySeconds(3600);

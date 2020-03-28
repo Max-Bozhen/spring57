@@ -8,7 +8,8 @@
 
 <a href="/usersList">Get PDF</a>
 <br/>
-<a href="/upload">Upload file</a>
+<br/>
+<a href="/upload">Upload file</a> <br>
 <#list users as user>
   <#if user??>
     <#list user.roles as role>
@@ -25,7 +26,8 @@
 <div>
   <#list users as user>
   <#if user??>
-  <a href="/editProfile/${user.id}">Show My Profile</a>
+  <a href="/editProfile/${user.id}">Show My Profile</a> <br>
+  <a href="/changeAcc/${user.id}">Show accs</a>
   <#else> Please log-in
   </#if>
 </#list>

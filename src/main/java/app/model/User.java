@@ -13,20 +13,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "USERS")
 public class User {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
   @Column(name = "FULL_NAME")
   private String fullName;
-
+  @OneToMany
+  @JoinColumn(name = "user_id")
+  private Set<UserAccount> account;
   @Column(name = "PHONE_NUMBER")
   @ElementCollection(targetClass = String.class)
   private List<String> phoneNumber;
@@ -68,6 +70,14 @@ public class User {
 
   public String getUsername() {
     return username;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public Set<UserAccount> getAccount() {
+    return account;
   }
 
   public void setUsername(String username) {

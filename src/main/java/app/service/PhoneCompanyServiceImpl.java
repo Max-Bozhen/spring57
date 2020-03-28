@@ -8,11 +8,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
+import javax.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +40,7 @@ public class PhoneCompanyServiceImpl implements IPhoneCompanyService {
   }
 
   @Override
+  @Transactional
   public List<PhoneCompany> findAll() {
     return companyRepository.findAll();
   }
@@ -44,5 +48,15 @@ public class PhoneCompanyServiceImpl implements IPhoneCompanyService {
   @Override
   public String findByPhoneCode(String phoneCode) {
     return companyRepository.findByPhoneCode(phoneCode).getCompanyName();
+  }
+public PhoneCompany findByCompanyName(String companyName){
+  return companyRepository.findByCompanyName(companyName);
+}
+  @Override
+  public List<String> getCompanyNames() {
+    List<@NotEmpty String> names = companyRepository.findAll().stream()
+        .map(company -> company.getCompanyName())
+        .collect(Collectors.toList());
+    return names;
   }
 }
