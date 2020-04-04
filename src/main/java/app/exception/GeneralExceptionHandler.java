@@ -30,8 +30,8 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler({NotEnoughAmountException.class, SameCompanyException.class})
-  protected String handleAmountEx( NotEnoughAmountException ex, Model model){
-    model.addAttribute("message", ex.getMessage());
+  protected String handleAmountEx( NotEnoughAmountException ex){
+//    model.addAttribute("message", ex.getMessage());
     return "status";
   }
 }

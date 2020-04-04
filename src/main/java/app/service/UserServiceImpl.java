@@ -8,10 +8,12 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +41,7 @@ public class UserServiceImpl implements IUserService {
 }
 
   @Override
-  public User findByFullName(String fullName) {
+  public Optional<User> findByFullName(String fullName) {
     return userRepository.findByFullName(fullName);
   }
 
@@ -49,9 +51,8 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public User findById(long id) {
-    return userRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("User with " + id + " not found"));
+  public Optional<User> findById(long id) {
+    return userRepository.findById(id);
   }
 
   @Override
@@ -71,8 +72,28 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public User findByUserName(String userName) {
+  public Optional<User> findByUserName(String userName) {
     return userRepository.findByUsername(userName);
+  }
+
+  @Override
+  public void deleteById(Long userId) {
+
+  }
+
+  @Override
+  public Optional<List<User>> findAllByOrderByFullNameAsc() {
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<List<User>> findAllByOrderByFullNameDesc() {
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<List<User>> findAll(Pageable pageable) {
+    return Optional.empty();
   }
 
 }

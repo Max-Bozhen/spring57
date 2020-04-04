@@ -2,14 +2,16 @@ package app.service;
 
 import app.model.User;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.domain.Pageable;
 
 public interface IUserService {
 
-  User findByFullName(String fullName);
+  Optional<User> findByFullName(String fullName);
 
   List<User> findAll();
 
-  User findById(long id);
+  Optional<User> findById(long id);
 
   List<String> getUsersPhoneNumbers(String fullName);
 
@@ -17,5 +19,13 @@ public interface IUserService {
 
   List<User> saveAll(List<User> users);
 
-  User findByUserName(String userName);
+  Optional<User> findByUserName(String userName);
+
+  void deleteById(Long userId);
+
+  Optional<List<User>> findAllByOrderByFullNameAsc();
+
+  Optional<List<User>> findAllByOrderByFullNameDesc();
+
+  Optional<List<User>> findAll(Pageable pageable);
 }

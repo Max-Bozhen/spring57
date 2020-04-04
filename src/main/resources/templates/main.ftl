@@ -1,5 +1,5 @@
-<#import "parts/common.ftlh" as c>
-<#import "parts/loginTemp.ftlh" as l>
+<#import "parts/common.ftl" as c>
+<#import "parts/loginTemp.ftl" as l>
 <@c.page>
 <font color="red" size="22">
   <b>${error?ifExists}</b>
@@ -30,7 +30,8 @@
   <#list users as user>
   <#if user??>
   <a href="/editProfile/${user.id}">Show My Profile</a> <br>
-  <a href="/changeAcc/${user.id}">Show accs</a>
+  <a href="/changeAcc/${user.id}">Show accs</a><br>
+  <a href="/rest/users">Show rest users</a>
   <#else> Please log-in
   </#if>
 </#list>

@@ -4,6 +4,7 @@ import app.model.User;
 import app.service.IUserService;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +26,12 @@ public class MainController {
   @GetMapping("/main")
   public String mainPage(Model model) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User user = iUserService.findByUserName(auth.getName());
+    auth.isAuthenticated();
+    Optional<User> byUserName = iUserService.findByUserName(auth.getName());
+    User user = null;
+    if(byUserName.isPresent()) {
+      user = byUserName.get();
+    }
     List<User> user1 = Arrays.asList(user);
     model.addAttribute("message", "Welcome to main page");
     model.addAttribute("users", user1);

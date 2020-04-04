@@ -1,4 +1,4 @@
-<#import "parts/common.ftlh" as c>
+<#import "parts/common.ftl" as c>
 <@c.page>
 <form action="editProfile" method="post">
   <label>User name :

@@ -1,5 +1,5 @@
-<#import "parts/common.ftlh" as c>
-<#import "parts/loginTemp.ftlh" as l>
+<#import "parts/common.ftl" as c>
+<#import "parts/loginTemp.ftl" as l>
 <@c.page>
 <h1>Full list of users</h1>
 <br/><br/>
@@ -22,5 +22,8 @@
     </#list>
   </table>
 </div>
+<script !src="">
+  function postUser
+</script>
 <@l.logout/>
 </@c.page>
